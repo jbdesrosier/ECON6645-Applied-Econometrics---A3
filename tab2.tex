@@ -1,0 +1,49 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{wage}&\multicolumn{1}{c}{wage}\\
+\hline
+educ\_yrs    &       1.973\sym{***}&       1.821\sym{***}\\
+            &     (0.190)         &     (0.121)         \\
+[1em]
+experience  &       0.338\sym{***}&       0.269\sym{***}\\
+            &    (0.0356)         &    (0.0239)         \\
+[1em]
+firm\_size\_mid&     0.00869\sym{***}&     0.00546\sym{***}\\
+            &   (0.00118)         &  (0.000653)         \\
+[1em]
+union       &       0.804         &       2.914\sym{***}\\
+            &     (0.838)         &     (0.478)         \\
+[1em]
+manager     &       9.378\sym{***}&       6.851\sym{***}\\
+            &     (1.058)         &     (0.758)         \\
+[1em]
+married     &       2.071\sym{*}  &       1.103\sym{*}  \\
+            &     (0.938)         &     (0.512)         \\
+[1em]
+1.region    &      -2.788\sym{**} &      -2.441\sym{***}\\
+            &     (0.972)         &     (0.587)         \\
+[1em]
+2.region    &      -3.058\sym{**} &      -1.348\sym{*}  \\
+            &     (0.937)         &     (0.635)         \\
+[1em]
+3.region    &           0         &           0         \\
+            &         (.)         &         (.)         \\
+[1em]
+4.region    &       6.430\sym{***}&       1.527\sym{*}  \\
+            &     (1.564)         &     (0.695)         \\
+[1em]
+5.region    &       2.879         &       0.809         \\
+            &     (1.495)         &     (1.022)         \\
+[1em]
+\_cons      &      -8.191\sym{**} &      -8.722\sym{***}\\
+            &     (2.672)         &     (1.921)         \\
+\hline
+\(N\)       &        5690         &        5727         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+}

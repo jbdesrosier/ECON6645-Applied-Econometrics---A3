@@ -1,0 +1,203 @@
+\documentclass[11pt]{article}
+
+%\newenvironment{sloppypar*}
+% {\sloppy\ignorespaces}
+% {\par}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{url}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[margin=1in]{geometry}
+%\usepackage{graphicx}
+%\usepackage{tabularx}
+\usepackage{lipsum}
+\usepackage{booktabs} 
+\usepackage{multirow}
+\usepackage{microtype}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+%\hfuzz=140pt
+%\newsavebox{\mybox}
+
+
+\begin{document}
+
+%\sbox{\mybox}{\hbadness=11000 \parbox{2cm}{\lipsum[1]}}
+
+
+\textbf{Assignment 3 - Applied Econometrics - ECON6645}
+
+\textbf{2022-02-23}
+
+\textbf{Justin Desrosier}
+
+\noindent\rule{16.51cm}{0.4pt}
+
+\textbf{Question 1}
+
+{
+\begin{table}[ht]
+\caption{Summary Statistics}
+\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{1}{ccccc}}
+\toprule
+                    &           n&        Mean&      Median&         Min&         Max\\
+\midrule
+Group 1 (Female==0)                   &            &            &            &            &            \\
+Respondent's Wage Before Deductions&       9,115&       33.55&          28&          10&         482\\
+Number of years of schooling completed by person&       9,114&       13.75&          14&           0&          20\\
+Number of years of work experience&       7,399&       21.61&          22&           0&          49\\
+Number of employees at person's place of work        &       8,813&      259.26&          72&           1&       1,269\\
+Respondent is Unionized&       8,966&        0.38&           0&           0&           1\\
+Respondent is a Manager&       7,660&        0.28&           0&           0&           1\\
+Respondent is Married&       9,087&        0.60&           1&           0&           1\\
+\midrule
+Group 2 (Female==1)                   &            &            &            &            &            \\
+Respondent's Wage Before Deductions&       8,534&       26.51&          23&          10&         425\\
+Number of years of schooling completed by person&       8,530&       14.14&          14&           0&          20\\
+Number of years of work experience&       7,151&       18.04&          18&           0&          47\\
+Number of employees at person's place of work        &       8,296&      261.68&          69&           1&       1,269\\
+Respondent is Unionized&       8,437&        0.45&           0&           0&           1\\
+Respondent is a Manager&       7,312&        0.21&           0&           0&           1\\
+Respondent is Married&       8,525&        0.58&           1&           0&           1\\
+\midrule
+Total               &            &            &            &            &            \\
+Respondent's Wage Before Deductions&      17,649&       30.15&          25&          10&         482\\
+Number of years of schooling completed by person&      17,644&       13.94&          14&           0&          20\\
+Number of years of work experience&      14,550&       19.86&          20&           0&          49\\
+Number of employees at person's place of work        &      17,109&      260.44&          70&           1&       1,269\\
+Respondent is Unionized&      17,403&        0.42&           0&           0&           1\\
+Respondent is a Manager&      14,972&        0.25&           0&           0&           1\\
+Respondent is Married&      17,612&        0.59&           1&           0&           1\\
+\bottomrule
+\end{tabular}
+\end{table}
+}
+
+Table 1 displays the summary statistics for our primary variable of interest, wage. The variable \textit{Firm size} as the Number of employees at person's place of work has a continuous value computed from discrete firms size categories. The computation method used (exception: top-coded category) was midpoint and quantile methods using a uniform distribution. The top-coded category continuous value was derived only as the expected value. The table also shows the summary values for the total dataset as well as for our groups of interest. Female respondents will be our primary focus for analysis of wage discrimination stemming from an inherent trait.  
+
+{
+{
+\begin{table}[t]
+\caption{Linear Regression}
+\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+Dependent variable: Respondent's Wage Before Deductions &\multicolumn{1}{c}{Group 1 (Not Female)}&\multicolumn{1}{c}{Group 2 (Female)}\\
+\hline
+\\
+Number of years of schooling completed by person    &       1.973\sym{***}&       1.821\sym{***}\\
+            &     (0.190)         &     (0.121)         \\
+[1em]
+Number of years of work experience  &       0.338\sym{***}&       0.269\sym{***}\\
+            &    (0.0356)         &    (0.0239)         \\
+[1em]
+Number of employees at person's place of work&     0.00869\sym{***}&     0.00546\sym{***}\\
+            &   (0.00118)         &  (0.000653)         \\
+[1em]
+Respondent is Unionized       &       0.804         &       2.914\sym{***}\\
+            &     (0.838)         &     (0.478)         \\
+[1em]
+Respondent is a Manager    &       9.378\sym{***}&       6.851\sym{***}\\
+            &     (1.058)         &     (0.758)         \\
+[1em]
+Respondent is Married     &       2.071\sym{*}  &       1.103\sym{*}  \\
+            &     (0.938)         &     (0.512)         \\
+[1em]
+\textbf{Region}            &                  &                 \\            
+[1em]
+\hspace{\parindent} \hspace{\parindent}Atlantic Canada    &      -2.788\sym{**} &      -2.441\sym{***}\\
+            &     (0.972)         &     (0.587)         \\
+[1em]
+\hspace{\parindent} \hspace{\parindent}Quebec    &      -3.058\sym{**} &      -1.348\sym{*}  \\
+            &     (0.937)         &     (0.635)         \\
+[1em]
+\hspace{\parindent} \hspace{\parindent}Prairies    &       6.430\sym{***}&       1.527\sym{*}  \\
+            &     (1.564)         &     (0.695)         \\
+[1em]
+\hspace{\parindent} \hspace{\parindent}British Columbia    &       2.879         &       0.809         \\
+            &     (1.495)         &     (1.022)         \\
+[1em]
+Constant      &      -8.191\sym{**} &      -8.722\sym{***}\\
+            &     (2.672)         &     (1.921)         \\
+\hline
+\(N\)       &        5690         &        5727         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+\end{table}
+}
+
+
+Table 2 consists of the coefficients from a regression of respondent's wages on education and experience as well as the additional control variables, firm size, belonging to a union, being a manager, and being married. Model (1) was regressed only for respondents who indicated that their gender was not female, and (2) for female using linear regression.
+
+From these regressions we can develop an understanding of the different parameter estimates associated with wages for each of the two groups. Education, work experience, firm size, being a manager, and being married were found to be associated with higher expected earning for the non-females. At the same time, being a member of a union was associated with higher wage returns for females than it was for non-females. 
+
+For all regions being a non-female was associated with higher expected wages, although, there was variation in the magnitude of difference. Females in working in the Prairies could expect to make \$1.53 more than if they were working in Ontario, meanwhile their non-female counterparts could expect a wage increase of \$6.43, a difference of \$4.90. When considering the difference in wages between the two groups for Atlantic Canada compared to the reference category, Ontario, it was only ~\$0.35. We can conclude that dynamics of the gender wage gap is similar in Ontario and Atlantic Canada since the decline in average wages is approximately the same for both groups.
+
+\begin{table}[t]
+  \centering
+  \caption{Oaxaca-Blinder Decomposition}
+    \begin{tabular}{lll}
+\hline\hline
+Dependent variable: Respondent's Wage Before Deductions &       &  \\
+\hline
+          & \multicolumn{1}{l}{\textbf{Overall}} & \multicolumn{1}{l}{Observations} \\
+\\
+    Group 1 (Not Female) & 33.58*** (0.46) & 5690 \\
+    Group 2 (Female) & 26.77*** (0.28) & 5727 \\
+    Difference & 6.81*** (0.54) &  \\
+    Explained & 0.68** (0.23) &  \\
+    Unexplained & 6.13*** (0.51) &  \\
+    \\
+\hline
+          & \multicolumn{1}{l}{\textbf{Explained}} & \multicolumn{1}{l}{\textbf{Unexplained}} \\
+\\
+    Number of years of schooling completed by person & -0.49** (0.15) & 2.15 (3.18) \\
+    Number of years of work experience & 0.77*** (0.11) & 1.36 (0.86) \\
+    Number of employees at person's place of work  & 0.05 (0.06) & 0.93* (0.39) \\
+    Respondent is Unionized & -0.14** (0.05) & -0.74 (0.34) \\
+    Respondent is a Manager & 0.42*** (0.10) & 0.73 (0.38) \\
+    Respondent is Married & 0.04 (0.02) & 0.57 (0.63) \\
+\textbf{Region}            &                  &                 \\            
+    \hspace{\parindent} \hspace{\parindent}Atlantic Canada & 0.02 (0.01) & -0.02 (0.08) \\
+    \hspace{\parindent} \hspace{\parindent}Quebec & 0 (0.02) & -0.46 (0.31) \\
+    \hspace{\parindent} \hspace{\parindent}Prairies & 0.01 (0.01) & 0.85** (0.30) \\
+    \hspace{\parindent} \hspace{\parindent}British Columbia & 0.01 (0.01) & 0.24 (0.21) \\
+    \\
+    \hline\hline
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+    \end{tabular}
+\end{table}
+
+Table 3 displays the output from a Blinder-Oaxaca Decomposition. The first section of the table shows the average wages for the two groups, \$33.58 and \$26.77 for non-females and females respectively. The Difference in averages for this sample is \$6.81. For the Explained and Unexplained rows, these numbers represent the proportion of the Difference that can be explained by the parameters and the proportion that cannot. Using the coefficient estimates in the second section of table 3, we can determine how much of the gap is attributable to each component. In other words, the explained difference in wage, on average for this sample, is ~\%10 attributable to favourable characteristics regarding wage yield, while ~\%90 is associated with gender discrimination, assuming no omitted variable bias. 
+
+The wage gap between females and non-females consists of both statistically significant explained and unexplained elements. The primary reason for the explained wage gap is the number of years of work experience that non-females have in the sample. Females are known to take more total maternity leave during their career and therefore have less total work experience which contributes to a lower average wage. 
+
+The unexplained portion of the wage gap is primarily attributed to years of education, firm size, and the regional categorical variable for the Prairies. For years of education, non-females with the average non-female level of education, have an associated \$2.15 increase in wage for an additional year of schooling more than females with the same level of education. Living in the prairies is also associated with an increase in the unexplained portion of the wage gap. Non-females in the prairies tend to earn \$0.85 more than their female counterparts with identical wage related characteristics.
+
+In particular, it is estimated that females with a number of years of work experience equal to the average number of years for non-females, have an associated \$0.77 raise in wages for 1 additional year of work experience. At the same time, non-females at the average level of work experience have an associated \$1.36 return on an additional year of experience.  
+
+
+
+
+     
+
+
+
+
+
+
+\end{document}
